@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+	<Properties>
+		<Property name="logPath">/home/manjusha/FissionLabs/test/logs/</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="RollingFile" fileName="${logPath}/application.log"
+			filePattern="${logPath}/application-%d{yyyy-MM-dd}-%i.log" >
+			<PatternLayout>
+				<pattern>%d{yyyy:MMM:dd HH:mm:ss,SSS}- %c{1}: %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1000 KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="4"/>
+		</RollingFile>
+	    <Console name="Console">
+	      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+	    </Console>		
+	</Appenders>
+  <Loggers>
+    <Logger name="com.fissionlabs.java.prbstmt" level="all">
+      <AppenderRef ref="RollingFile"/>
+    </Logger>
+    <Root level="error">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>	
+</Configuration>
